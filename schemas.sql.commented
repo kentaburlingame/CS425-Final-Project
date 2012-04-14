@@ -1,3 +1,7 @@
+-----------------------------------------------------------------------------
+--Theaters and Movies
+-----------------------------------------------------------------------------
+--Entity Set
 Theater (
    ID 			      int,
    streetNumber	   int, 
@@ -34,6 +38,7 @@ Genre (
    Type 			      varchar(15),
    Primary Key (ID))
 
+--Relationship Set between Movie, Theater, and Screens
 Showtimes (
    theater_ID	      int, 
    movie_Title	      varchar(20), 
@@ -45,6 +50,7 @@ Showtimes (
    Foreign Key (screen_ID) references Screen,
    Primary Key (theater_ID, movie_Title, screen_ID, date, time))
 
+--Relationship Set between Movie and Stars
 appearsIn (
    movie_Title 	   varchar(30), 
    star_ID		      int,
@@ -52,6 +58,7 @@ appearsIn (
    Foreign Key (star_ID) references Stars,
    Primary Key (movie_Title, star_ID)) 
 
+--Relationship Set between Movie and Genre
 movieGenre (
    movie_Title 	   varchar(30),
    genre_ID		      int,
@@ -59,6 +66,10 @@ movieGenre (
    Foreign Key (genre_ID) references Genre,
    Primary Key (movie_Title, genre_ID))
 
+-----------------------------------------------------------------------------
+--Membership and Privileges 
+-----------------------------------------------------------------------------
+--Entity Sets
 User (
    user_ID			   varchar(15),
    firstname			varchar(20), 
@@ -87,6 +98,7 @@ Tiers (
    Primary Key (status)
    check (credits > 0))
 
+--Relationship Set between User and Tiers
 UserType (
    user_ID		      varchar(15),
    userCredits	      int,
@@ -94,6 +106,10 @@ UserType (
    Foreign  Key (user_ID) references User,
    Primary Key (user_ID))
 
+-----------------------------------------------------------------------------
+--Discussion Forum
+-----------------------------------------------------------------------------
+--Relationship Set between Movie, Theater, and User
 Reviews ( 
    user_ID		      varchar(15),
    type			      varchar(15),
@@ -105,6 +121,10 @@ Reviews (
    Foreign Key (theater_ID) references Theater,
    Primary Key (user_ID, type, movie_Title, theater_ID, review))
 
+-----------------------------------------------------------------------------
+--Theater Staff and Functions
+-----------------------------------------------------------------------------
+--Entity Sets
 Employee (
    ID			         int, 
    ssn			      numeric(9,0),
@@ -127,6 +147,7 @@ JobType (
    description	      varchar(200),
    Primary Key (type))
 
+--Relationship Set between Employee and JobType
 Schedule (
    employee_ID	      int, 
    type			      varchar(20), 
@@ -138,6 +159,7 @@ Schedule (
    Foreign Key (location) references Theater
    Primary Key (employee_ID, type, location_ID, date, time))
 
+--Relationship Set between Employee and Theater
 worksAt (
    theater_id 	      int,
    employee_id 	   int,
