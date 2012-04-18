@@ -11,6 +11,7 @@ create table Theater (
    unique (streetName, city, state, zipCode));
 
 create table Movie (
+   ID				   int,
    title			      varchar(30),
    director			   varchar(20),
    description		   varchar(50),
@@ -59,7 +60,8 @@ create table movieGenre (
    Primary Key (movie_Title, genre_ID));
 
 create table User (
-   user_ID			   varchar(15),
+   ID				   int,
+   user_ID			   varchar(15) unique,
    firstname			varchar(20), 
    lastname			   varchar(20), 
    password			   varchar(15),
@@ -87,23 +89,34 @@ create table Tiers (
    check (credits > 0));
 
 create table UserType (
-   user_ID		      varchar(15),
+   user_ID		      int,
    userCredits	      int,
    status            varchar(8),
    Foreign  Key (user_ID) references User,
    Primary Key (user_ID));
 
-create table Reviews ( 
-   user_ID		      varchar(15),
-   type			      varchar(15),
-   movie_Title	      varchar(20), 
-   theater_ID	      int,
-   review		      varchar(300),
-   Foreign Key (user_ID) references User, 
-   Foreign Key (movie_Title) references Movie, 
-   Foreign Key (theater_ID) references Theater,
-   Primary Key (user_ID, type, movie_Title, theater_ID, review));
+create table movieForum (
+	comment_ID		  int auto_increment, 
+	thread_ID		  int,
+	user_ID 		  int, 
+	movie_ID		  int,
+	comment			  varchar(300),
+	commentNumber     int,
+	time 			  timestamp,
+	Primary Key (comment_ID)
+)   
 
+create table theaterForum (
+	comment_ID	  	  int auto_increment, 
+	thread_ID		  int,
+	user_ID 		  int, 
+	theater_ID		  int,
+	comment			  varchar(300),
+	commentNumber     int,
+	time 			  timestamp,
+	Primary Key (comment_ID)
+)   
+   
 create table Employee (
    ID			         int, 
    ssn			      numeric(9,0),
