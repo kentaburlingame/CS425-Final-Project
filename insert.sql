@@ -17,5 +17,4 @@ insert into ticketPrices
 insert into ticketPrices 
 	values(5, 'senior', 9);
 
-insert into Theater
-	values
+

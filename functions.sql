@@ -10,3 +10,4 @@ create function updateCreditPurchase (totalPrice int, user_ID int)
 //
 
 delimiter ;
+
