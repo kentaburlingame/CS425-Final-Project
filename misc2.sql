@@ -1,5 +1,5 @@
 delimiter //
-create trigger theaterCommentCredits after update of theaterForum
+create trigger theaterCommentCredits after update on theaterForum
 for each row
 begin  
 	update UserType
