@@ -10,6 +10,9 @@ begin
 			   and UserType.user_ID = new.user_ID;
 	update UserType
 		set userCredits = userCredits + 1
-		where new.commentNumber > 1 and UserType.user_ID = new.user_ID;
+		where (select commentNumber 
+			   from theaterForum
+			   where new.commentNumber > 1 )
+			   and UserType.user_ID = new.user_ID;
 end;
 

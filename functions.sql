@@ -1,6 +1,6 @@
 --Function updating users' credits after purchase
 create function updateCreditPurchase (totalPrice int, user_ID int)
-	returns int
+	returns integer
 	begin 
 		update UserType
 		set userCredits = userCredits + totalPrice
@@ -8,4 +8,5 @@ create function updateCreditPurchase (totalPrice int, user_ID int)
 		return userCredits;
 	end
 	
+
 
