@@ -15,7 +15,7 @@ create table Movie (
    title			      varchar(30),
    director			   varchar(20),
    description		   varchar(50),
-   Primary Key (title));
+   Primary Key (ID));
 
 create table Screen (
    ID				      int auto_increment,
@@ -27,7 +27,7 @@ create table Stars (
    ID				      int auto_increment,
    firstName 		   varchar(20),
    lastName 		   varchar(20),
-   Primary Key (firstName, lastName));
+   Primary Key (ID));
 
 create table Genre (
    ID				      int auto_increment,
@@ -48,16 +48,16 @@ create table Showtimes (
 create table appearsIn (
    movie_ID 	   int, 
    star_ID		      int,
-   Foreign Key (movie_Title) references Movie,
+   Foreign Key (movie_ID) references Movie,
    Foreign Key (star_ID) references Stars,
-   Primary Key (movie_Title, star_ID)); 
+   Primary Key (movie_ID, star_ID)); 
 
 create table movieGenre (
    movie_ID 	   int,
    genre_ID		      int,
-   Foreign Key (movie_Title) references Movie, 
+   Foreign Key (movie_ID) references Movie, 
    Foreign Key (genre_ID) references Genre,
-   Primary Key (movie_Title, genre_ID));
+   Primary Key (movie_ID, genre_ID));
 
 create table User (
    ID				   int auto_increment,
@@ -77,7 +77,7 @@ create table User (
    CCNumber 			numeric(16,0), 
    expDate			   date, 
    securityCode		char(3),
-   Primary Key (user_ID),
+   Primary Key (ID),
    check (type in ('Visa', 'Mastercard')), check (cardNumber > 0));
 
 create table Tiers (
@@ -108,8 +108,7 @@ create table movieForum (
 	comment			  varchar(300),
 	commentNumber     int,
 	time 			  timestamp,
-	Primary Key (comment_ID)
-)   
+	Primary Key (comment_ID));   
 
 create table theaterForum (
 	comment_ID	  	  int auto_increment, 
@@ -119,8 +118,7 @@ create table theaterForum (
 	comment			  varchar(300),
 	commentNumber     int,
 	time 			  timestamp,
-	Primary Key (comment_ID)
-)   
+	Primary Key (comment_ID));   
    
 create table Employee (
    ID			         int auto_increment, 
