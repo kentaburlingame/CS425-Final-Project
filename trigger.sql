@@ -20,7 +20,7 @@ end;
 delimiter ;
 
 delimiter //
-create trigger theaterCommentCredits after update on Forum
+create trigger movieCommentCredits after update on movieForum
 for each row
 begin  
 	update UserType
@@ -44,12 +44,12 @@ delimiter //
 create trigger upgradingUserStatus after update on UserType 
 for each row
 begin 
-	if (nrow.userCredits => 2000) then	
-		set status = (select status from Tiers where credits = 2000);
-	else if (nrow.userCredits => 1000 and nrow.userCredits < 2000) then
-		set status = (select status from Tiers where credits = 1000);
-	else if (nrow.userCredits => 500 and nrow.userCredits < 1000) then
-		set status = (select status from Tiers where credits = 500);
+	if (new.userCredits >= 2000) then	
+		set UserType.status = (select status from Tiers where credits = 2000);
+	elseif (new.userCredits >= 1000 and new.userCredits < 2000) then
+		set UserType.status = (select status from Tiers where credits = 1000);
+	elseif (new.userCredits >= 500 and new.userCredits < 1000) then
+		set UserType.status = (select status from Tiers where credits = 500);
 	end if;
 end;	
 //
