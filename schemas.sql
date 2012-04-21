@@ -80,7 +80,6 @@ create table User (
    Primary Key (user_ID),
    check (type in ('Visa', 'Mastercard')), check (cardNumber > 0));
 
-
 create table Tiers (
    credits			   int,
    status			   varchar(8),
@@ -94,6 +93,12 @@ create table UserType (
    status            varchar(8),
    Foreign  Key (user_ID) references User,
    Primary Key (user_ID));
+   
+create table ticketPrices (
+	price_ID		  int, 
+	ticketType		  varchar(7),
+	price			  decimal(4,2),
+	Primary Key (price_ID));
 
 create table movieForum (
 	comment_ID		  int auto_increment, 
