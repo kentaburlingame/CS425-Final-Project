@@ -1,41 +1,47 @@
 delimiter //
-create trigger theaterCommentCredits after update of theaterForum
+create trigger theaterCommentCredits after update on theaterForum
 for each row
-begin 
-	if (nrow.commentNumber = 1) then
-		update UserType
+begin  
+	update UserType
 		set  userCredits = userCredits + 3 
-		where UserType.user_ID = nrow.user_ID;
-	else if (nrow.commentNumber > 1) then 
-		update UserType
+		where (select commentNumber 
+			   from theaterForum
+			   where new.commentNumber = 1 )
+			   and UserType.user_ID = new.user_ID;
+	update UserType
 		set userCredits = userCredits + 1
-		where UserType.user_ID = nrow.user_ID;
-	end if;
+		where (select commentNumber 
+			   from theaterForum
+			   where new.commentNumber > 1 )
+			   and UserType.user_ID = new.user_ID;
 end;
 //
 
 delimiter ;
 
 delimiter //
-create trigger movieCommentCredits after update of movieForum
+create trigger theaterCommentCredits after update on Forum
 for each row
-begin 
-	if (nrow.commentNumber = 1) then
-		update UserType
+begin  
+	update UserType
 		set  userCredits = userCredits + 3 
-		where UserType.user_ID = nrow.user_ID;
-	else if (nrow.commentNumber > 1) then 
-		update UserType
+		where (select commentNumber 
+			   from theaterForum
+			   where new.commentNumber = 1 )
+			   and UserType.user_ID = new.user_ID;
+	update UserType
 		set userCredits = userCredits + 1
-		where UserType.user_ID = nrow.user_ID;
-	end if;
+		where (select commentNumber 
+			   from theaterForum
+			   where new.commentNumber > 1 )
+			   and UserType.user_ID = new.user_ID;
 end;
 //
 
 delimiter ;
 
 delimiter //
-create trigger upgradingUserStatus after update of UserType 
+create trigger upgradingUserStatus after update on UserType 
 for each row
 begin 
 	if (nrow.userCredits => 2000) then	
