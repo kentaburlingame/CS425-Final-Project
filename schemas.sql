@@ -1,5 +1,5 @@
 create table Theater (
-   ID 			      int,
+   ID 			      int auto_increment,
    streetNumber	   int, 
    streetName		   varchar(20), 
    city			      varchar(20), 
@@ -11,26 +11,26 @@ create table Theater (
    unique (streetName, city, state, zipCode));
 
 create table Movie (
-   ID				   int,
+   ID				   int auto_increment,
    title			      varchar(30),
    director			   varchar(20),
    description		   varchar(50),
    Primary Key (title));
 
 create table Screen (
-   ID				      int,
+   ID				      int auto_increment,
    capacity		      int, 
    Primary Key (ID),
    check (capacity > 0));
 
 create table Stars (
-   ID				      int,
+   ID				      int auto_increment,
    firstName 		   varchar(20),
    lastName 		   varchar(20),
    Primary Key (firstName, lastName));
 
 create table Genre (
-   ID				      int,
+   ID				      int auto_increment,
    Type 			      varchar(15),
    Primary Key (ID));
 
@@ -46,21 +46,21 @@ create table Showtimes (
    Primary Key (theater_ID, movie_Title, screen_ID, date, time));
 
 create table appearsIn (
-   movie_Title 	   varchar(30), 
+   movie_ID 	   int, 
    star_ID		      int,
    Foreign Key (movie_Title) references Movie,
    Foreign Key (star_ID) references Stars,
    Primary Key (movie_Title, star_ID)); 
 
 create table movieGenre (
-   movie_Title 	   varchar(30),
+   movie_ID 	   int,
    genre_ID		      int,
    Foreign Key (movie_Title) references Movie, 
    Foreign Key (genre_ID) references Genre,
    Primary Key (movie_Title, genre_ID));
 
 create table User (
-   ID				   int,
+   ID				   int auto_increment,
    user_ID			   varchar(15) unique,
    firstname			varchar(20), 
    lastname			   varchar(20), 
@@ -123,7 +123,7 @@ create table theaterForum (
 )   
    
 create table Employee (
-   ID			         int, 
+   ID			         int auto_increment, 
    ssn			      numeric(9,0),
    location		      int, 
    firstName		   varchar(20),
