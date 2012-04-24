@@ -1,3 +1,8 @@
+-- -----------------------------------------------------------
+-- Theaters and Movies
+-- -----------------------------------------------------------
+
+-- Entity Set
 create table Theater (
    ID 			      int auto_increment,
    streetNumber	   int, 
@@ -34,6 +39,7 @@ create table Genre (
    Type 			      varchar(15),
    Primary Key (ID));
 
+-- Relationship Set Between Movie, Theater, and Screens
 create table Showtimes (
    theater_ID	      int, 
    movie_Title	      varchar(20), 
@@ -45,6 +51,7 @@ create table Showtimes (
    Foreign Key (screen_ID) references Screen,
    Primary Key (theater_ID, movie_Title, screen_ID, date, time));
 
+-- Relationship Set between Movie and Stars
 create table appearsIn (
    movie_ID 	   int, 
    star_ID		      int,
@@ -52,6 +59,7 @@ create table appearsIn (
    Foreign Key (star_ID) references Stars,
    Primary Key (movie_ID, star_ID)); 
 
+-- Relationship Set between Movie and Genre
 create table movieGenre (
    movie_ID 	   int,
    genre_ID		      int,
@@ -59,6 +67,11 @@ create table movieGenre (
    Foreign Key (genre_ID) references Genre,
    Primary Key (movie_ID, genre_ID));
 
+-- ----------------------------------------------------
+-- Membership and Privileges
+-- ----------------------------------------------------
+
+-- Entity Sets
 create table User (
    ID				   int auto_increment,
    user_ID			   varchar(15) unique,
@@ -87,6 +100,7 @@ create table Tiers (
    Primary Key (status),
    check (credits > 0));
 
+-- Relationship set between User and Tiers
 create table UserType (
    user_ID		      int,
    userCredits	      int,
@@ -94,12 +108,18 @@ create table UserType (
    Foreign  Key (user_ID) references User,
    Primary Key (user_ID));
    
+-- Ticket Prices table
 create table ticketPrices (
 	price_ID		  int, 
 	ticketType		  varchar(7),
 	price			  decimal(4,2),
 	Primary Key (price_ID));
 
+-- ---------------------------------------------------
+-- Discussion Forum
+-- ---------------------------------------------------
+
+-- Entity Sets
 create table movieForum (
 	comment_ID		  int auto_increment, 
 	thread_ID		  int,
@@ -120,6 +140,11 @@ create table theaterForum (
 	time 			  timestamp,
 	Primary Key (comment_ID));   
    
+-- ---------------------------------------------------
+-- Theater Staff and Functions
+-- ---------------------------------------------------
+
+-- Entity Sets
 create table Employee (
    ID			         int auto_increment, 
    ssn			      numeric(9,0),
@@ -142,6 +167,7 @@ create table JobType (
    description	      varchar(200),
    Primary Key (type));
 
+-- Relationship set between Employee and JobType
 create table Schedule (
    employee_ID	      int, 
    type			      varchar(20), 
@@ -153,6 +179,7 @@ create table Schedule (
    Foreign Key (location_ID) references Theater,
    Primary Key (employee_ID, type, location_ID, date, time));
 
+-- Relationship Set between Employee and Theater
 create table worksAt (
    theater_id 	      int,
    employee_id 	   int,

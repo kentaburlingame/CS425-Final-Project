@@ -1,3 +1,6 @@
+-- Trigger for updating user's credits if they made the first comment or any
+-- comment in the Theater Forum
+
 delimiter //
 create trigger theaterCommentCredits after update on theaterForum
 for each row
@@ -19,6 +22,9 @@ end;
 
 delimiter ;
 
+-- Trigger for updating user's credits if they made the first comment or any
+-- comment in the Movie Forum
+
 delimiter //
 create trigger movieCommentCredits after update on movieForum
 for each row
@@ -39,6 +45,8 @@ end;
 //
 
 delimiter ;
+
+-- Trigger for updating users' status based on the amount of credits they have
 
 delimiter //
 create trigger upgradingUserStatus after update on UserType 
