@@ -7,7 +7,7 @@ require "functions.php";
 
 session_name('tzLogin');
 session_set_cookie_params(2*7*24*60*60);
-//session_start();
+session_start();
 
 $script = '
 	<script type="text/javascript">
@@ -35,20 +35,25 @@ $script = '
 //	$manager = $manager[0];
 //}
 
-$fname=$_REQUEST['fname'];
-$lname=$_REQUEST['lname'];
-$email=$_REQUEST['email'];
-$phone=$_REQUEST['phone1']."-".$_REQUEST['phone2']."-".$_REQUEST['phone3'];
-$dob=$_REQUEST['dob'];
-$zip=$_REQUEST['zip'];
-$gender=$_REQUEST['gender'];
+$user_ID=$REQUEST['user_ID'];
+$firstname=$_REQUEST['firstname'];
+$lastname=$_REQUEST['lastname'];
+$password=$_REQUEST['password'];
+$email_ID=$_REQUEST['email_ID'];
+$streetNumber=$_REQUEST['streetNumber'];
+$streetName=$_REQUEST['streetName'];
+$aptNumber=$_REQUEST['aptNumber'];
+$city=$_REQUEST['city'];
+$state=$_REQUEST['state'];
+$zipCode=$_REQUEST['zipCode'];
+$phoneNumber=$_REQUEST['phoneNumber'];
 $type=$_REQUEST['type'];
 $order=$_REQUEST['order'];
 
 /* CREATES NEW CLIENT WHEN SUBMIT IS PRESSED */ 
-if($type=="create" && !empty($fname) && !empty($lname) && !empty($email) && !empty($phone) && !empty($dob) && !empty($zip) && !empty($gender) ) {
+if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname) && !empty($password) && !empty($email_ID) && !empty($streetNumber) && !empty($streetName) && !empty($city) && !empty($state) && !empty(zipCode) && !empty(phoneNumber) ) {
 	$made=true;
-	$query = "INSERT INTO city(phone,email,fname,lname,dob,zip,gender) VALUES('$phone','$email','$fname','$lname','$dob','$zip','$gender')";
+	$query = "INSERT INTO User(user_ID,firstname,lastname,password,email_ID,streetNumber,streetName,aptNumber,city,state,zipCode,phoneNumber) VALUES('$user_ID','$firstname','$lastname','$password','$email_ID','$streetNumber','$streetName', '$aptNumber', '$city', '$state', '$zipCode', '$phoneNumber')";
 	mysql_query($query);
  }
  ?> 
@@ -76,11 +81,10 @@ if($type=="create" && !empty($fname) && !empty($lname) && !empty($email) && !emp
     
     
     <?
-	if($_SESSION['id']) {
 	if($type=="create") {
 	echo "<div class=\"container\">";
 	if($made)
-		echo "<h2>Created new client [$lname, $fname, $email, $phone, $dob, $zip, $gender]</h2>";
+		echo "<h2>Created new client [$user_ID]</h2>";
 	else
 		echo "<h2>Failed to create new client due to missing information</h2>";
 	echo "</div>";
@@ -90,38 +94,53 @@ if($type=="create" && !empty($fname) && !empty($lname) && !empty($email) && !emp
 	<form action="./clients.php" method="Post">
     	<h1>New Client</h1>
 	<fieldset>
+		<div class="field>
+			<label>User ID: </label>
+			<input type="text" name="user_ID" class="text" value>
+		</div>
 		<div class="field">
 			<label>First Name: </label>
-			<input type="text" name="fname"  class="text" value>
+			<input type="text" name="firstname"  class="text" value>
 		</div>
 		<div class="field">
 			<label>Last Name: </label>
-			<input type="text" name="lname"  class="text" value>
+			<input type="text" name="lastname"  class="text" value>
+		</div>
+		<div class="field">
+			<label>Password: </label>
+			<input type="text" name="password"  class="text" value>
 		</div>
 		<div class="field">
 			<label>Email: </label>
-			<input type="text" name="email" class="text" value>
+			<input type="text" name="email_ID" class="text" value>
+		</div>
+		<div class="field">
+			<label>Street Number: </label>
+			<input type="text" name="streetNumber"  class="text" value>
+		</div>
+		<div class="field">
+			<label>Street Name: </label>
+			<input type="text" name="streetName"  class="text" value>
+		</div>
+		<div class="field">
+			<label>Apt Number: </label>
+			<input type="text" name="aptNumber"  class="text" value>
+		</div>
+		<div class="field">
+			<label>City: </label>
+			<input type="text" name="city"  class="text" value>
+		</div>
+		<div class="field">
+			<label>State: </label>
+			<input type="text" name="state"  class="text" value>
+		</div>
+		<div class="field">
+			<label>Zip Code: </label>
+			<input type="text" name="zipCode"  class="text" value>
 		</div>
 		<div class="field">
 			<label>Phone #: </label>
-			<input type=text name="phone1"  class="text" size=1 maxlength=4 value>-
-			<input type=text name="phone2" class="text" size=1 maxlength=3 value>-
-			<input type=text name="phone3" class="text" size=1 maxlength=4 value>
-		</div>
-		<div class="field">
-			<label>Date of Birth: </label>
-			<input type=text name="dob" class="text" size=2 maxlength=10 value> (MM/DD/YYYY)
-		</div>
-		<div class="field">
-			<label>Zip: </label>
-			<input type="text" name="zip" class="text" value>
-		</div>
-		<div>
-			<label>Gender: </label>
-			<select name="gender" class="text">
-				<option value="M">Male</option>
-				<option value="F">Female</option>
-			</select>
+			<input type=text name="phoneNumber"  class="text" size=1 maxlength=12 value> (XXX-XXX-XXXX)
 		</div>
 		<label><input type=submit name="submit" id="r-submit" class="newbutton" value="Submit"></label>
 		<input type="hidden" name="type" value="create">
@@ -131,7 +150,7 @@ if($type=="create" && !empty($fname) && !empty($lname) && !empty($email) && !emp
     </div>
 
 
-	<div class="container">
+<!--	<div class="container">
 	<h1>Search Clients</h1>
 	<form action="./clients.php" method="GET">
 	<fieldset>
@@ -214,10 +233,7 @@ if($type=="create" && !empty($fname) && !empty($lname) && !empty($email) && !emp
 	<? echo "Search returned ".$c." results."; ?>
 	</fieldset>
 	<? } ?> 
-	</div>
-	<?}
-	else echo '<h2>Please, <a href="index.php">login</a> and come back later!</h2>';
-	?>
+	</div> -->
   <div class="container tutorial-info">
   This is a tutorialzine demo. View the <a href="http://tutorialzine.com/2009/10/cool-login-system-php-jquery/" target="_blank">original tutorial</a>, or download the <a href="demo.zip">source files</a>.    </div>
 </div>
