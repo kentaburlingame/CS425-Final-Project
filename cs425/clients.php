@@ -51,7 +51,7 @@ $type=$_REQUEST['type'];
 $order=$_REQUEST['order'];
 
 /* CREATES NEW CLIENT WHEN SUBMIT IS PRESSED */ 
-if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname) && !empty($password) && !empty($email_ID) && !empty($streetNumber) && !empty($streetName) && !empty($city) && !empty($state) && !empty(zipCode) && !empty(phoneNumber) ) {
+if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname) && !empty($password) && !empty($email_ID) && !empty($streetNumber) && !empty($streetName) && !empty($city) && !empty($state) && !empty($zipCode) && !empty($phoneNumber) ) {
 	$made=true;
 	$query = "INSERT INTO User(user_ID,firstname,lastname,password,email_ID,streetNumber,streetName,aptNumber,city,state,zipCode,phoneNumber) VALUES('$user_ID','$firstname','$lastname','$password','$email_ID','$streetNumber','$streetName', '$aptNumber', '$city', '$state', '$zipCode', '$phoneNumber')";
 	mysql_query($query);
@@ -94,7 +94,7 @@ if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname
 	<form action="./clients.php" method="Post">
     	<h1>New Client</h1>
 	<fieldset>
-		<div class="field>
+		<div class="field">
 			<label>User ID: </label>
 			<input type="text" name="user_ID" class="text" value>
 		</div>
@@ -190,7 +190,7 @@ if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname
 		<input type="hidden" name="type" value="search"><div class="field">
 	</fieldset>
 	</form>
-	<?
+	< ?
 	if($type=="search") {
 
 	echo "<div>[fName: ".$fname.", lName: ".$lname.", DoB: ".$dob.", Zip: ".$Zip.", Gender: ".$gender.", Order by: ".$order."]</div>";
@@ -212,10 +212,10 @@ if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname
 
 	<fieldset>
 	
-	<? /* TABLE DISPLAYING SEARCH RESULTS */ ?> 
+	< ? /* TABLE DISPLAYING SEARCH RESULTS */ ? > 
 	<table class="search">
 		<tr><th>Name</th><th>Date of Birth</th><th>Zip Code</th><th>Bookings Made</th><th>Gender</th></tr>
-		<? 
+		< ? 
 		$c=0;
 		while($row = mysql_fetch_array($result)) {
 
@@ -230,10 +230,10 @@ if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname
 	</table>
 	</fieldset>	
 	<fieldset>
-	<? echo "Search returned ".$c." results."; ?>
+	< ? echo "Search returned ".$c." results."; ?>
 	</fieldset>
-	<? } ?> 
-	</div> -->
+	< ? } ?> 
+	</div> --> 
   <div class="container tutorial-info">
   This is a tutorialzine demo. View the <a href="http://tutorialzine.com/2009/10/cool-login-system-php-jquery/" target="_blank">original tutorial</a>, or download the <a href="demo.zip">source files</a>.    </div>
 </div>
