@@ -19,8 +19,10 @@ require 'header.php'
         <h2>Earn user points to gain rewards! </h2>
         </div>
         <div class="container">
-		<h3><a href="">Discussion Forum</a></h3>
-		<h3><a href="">Purcase Movie Tickets</a></h3>
+        <h3><a href="profile">Edit your Profile</a></h3>
+	<h3><a href="forum">Discussion Forum</a></h3>
+	<h3><a href="credits">User Account</a><h3>
+        <!--  <p>This website was borrowed from the <a href="http://tutorialzine.com/2009/10/cool-login-system-php-jquery/">Cool Login System tutorial</a> on <strong>Tutorialzine</strong>.</p>--!>
           <div class="clear"></div>
         </div>
         

@@ -30,11 +30,11 @@ $script = '
 	exit;
 }
 
-if($_SESSION['id']){
-	$manager = mysql_query("SELECT manager FROM agent WHERE usr='".$_SESSION['usr']."'");
-	$manager = mysql_fetch_row($manager);
-	$manager = $manager[0];
-}
+//if($_SESSION['id']){
+//	$manager = mysql_query("SELECT manager FROM agent WHERE usr='".$_SESSION['usr']."'");
+//	$manager = mysql_fetch_row($manager);
+//	$manager = $manager[0];
+//}
 
 $fname=$_REQUEST['fname'];
 $lname=$_REQUEST['lname'];

@@ -6,10 +6,10 @@ if(!defined('INCLUDE_CHECK')) die('You are not allowed to execute this file dire
 
 
 
-$db_host	= 'kent@polahbeah.dyndns.org';
-$db_user	= 'cs425';
-$db_pass	= '19910351';
-$db_database	= '425project'; 
+$db_host	= '127.0.0.1';
+$db_user	= 'ketcs425';
+$db_pass	= 'password';
+$db_database	= 'ketcs425project'; 
 
 /* End config */
 

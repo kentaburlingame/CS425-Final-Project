@@ -177,10 +177,9 @@ if($_SESSION['msg'])
 	<div id="panel">
 		<div class="content clearfix">
 			<div class="left">
-				<h1>Sunsational Vacations Employee Login</h1>
-				<h2>Please login to access database</h2>		
-				<p class="grey">Once logged in you will be able to access your client information.</p>
-				<p class="grey">If you do not have an account yet please contact your manager.</p>
+				<h1>Mega Movie Database</h1>
+				<h2>Registered users login here</h2>		
+				<p class="grey">Once logged in you will be able to purchase movie tickets, participate in discussion forums, and earn movie rewards.</p>
 			</div>
             
             
@@ -193,7 +192,7 @@ if($_SESSION['msg'])
 			<div class="left">
 				<!-- Login Form -->
 				<form class="clearfix" action="" method="post">
-					<h1>Agent Login</h1>
+					<h1>User Login</h1>
                     
                     <?php
 						
@@ -217,7 +216,7 @@ if($_SESSION['msg'])
 				
 				<form action="" method="post">
 					<h1>Not registered yet?</h1>		
-                    
+                    			<h2><a href = "clients">Register Here!</a></h2>
                     <?php
 						
 						if($_SESSION['msg']['reg-err'])
@@ -234,12 +233,12 @@ if($_SESSION['msg'])
 
 					?>
                     		
-					<label class="grey" for="username">Username:</label>
+					<!--<label class="grey" for="username">Username:</label>
 					<input class="field" type="text" name="username" id="username" value="" size="23" />
 					<label class="grey" for="email">Email:</label>
 					<input class="field" type="text" name="email" id="email" size="23" />
 					<label>A password will be e-mailed to you.</label>
-					<input type="submit" name="submit" value="Register" class="bt_register" />
+					<input type="submit" name="submit" value="Register" class="bt_register" />-->
 				</form>
 			</div>
             
