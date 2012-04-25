@@ -29,11 +29,11 @@ $script = '
 	header("Location: index.php");
 	exit;
 }
-//if($_SESSION['id']){
-//	$manager = mysql_query("SELECT manager FROM agent WHERE usr='".$_SESSION['usr']."'");
-//	$manager = mysql_fetch_row($manager);
-//	$manager = $manager[0];
-//}
+if($_SESSION['id']){
+	$manager = mysql_query("SELECT manager FROM agent WHERE usr='".$_SESSION['usr']."'");
+	$manager = mysql_fetch_row($manager);
+	$manager = $manager[0];
+}
 
 $user_ID=$REQUEST['user_ID'];
 $firstname=$_REQUEST['firstname'];
@@ -48,7 +48,6 @@ $state=$_REQUEST['state'];
 $zipCode=$_REQUEST['zipCode'];
 $phoneNumber=$_REQUEST['phoneNumber'];
 $type=$_REQUEST['type'];
-$order=$_REQUEST['order'];
 
 /* CREATES NEW CLIENT WHEN SUBMIT IS PRESSED */ 
 if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname) && !empty($password) && !empty($email_ID) && !empty($streetNumber) && !empty($streetName) && !empty($city) && !empty($state) && !empty($zipCode) && !empty($phoneNumber) ) {
@@ -84,15 +83,15 @@ if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname
 	if($type=="create") {
 	echo "<div class=\"container\">";
 	if($made)
-		echo "<h2>Created new client [$user_ID]</h2>";
+		echo "<h2>Created new user,  [$user_ID]</h2>";
 	else
-		echo "<h2>Failed to create new client due to missing information</h2>";
+		echo "<h2>Failed to create new user due to missing information</h2>";
 	echo "</div>";
 	}
     ?>
    	<div class="container">
 	<form action="./clients.php" method="Post">
-    	<h1>New Client</h1>
+    	<h1>New Users</h1>
 	<fieldset>
 		<div class="field">
 			<label>User ID: </label>
@@ -140,7 +139,7 @@ if($type=="create" && !empty($user_ID) && !empty($firstname) && !empty($lastname
 		</div>
 		<div class="field">
 			<label>Phone #: </label>
-			<input type=text name="phoneNumber"  class="text" size=1 maxlength=12 value> (XXX-XXX-XXXX)
+			<input type=text name="phoneNumber"  class="text"  maxlength=12 value> (XXX-XXX-XXXX)
 		</div>
 		<label><input type=submit name="submit" id="r-submit" class="newbutton" value="Submit"></label>
 		<input type="hidden" name="type" value="create">
