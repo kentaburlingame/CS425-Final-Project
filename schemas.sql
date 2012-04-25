@@ -19,7 +19,7 @@ create table Movie (
    ID				   int auto_increment,
    title			      varchar(30),
    director			   varchar(20),
-   description		   varchar(50),
+   description		   varchar(300),
    Primary Key (ID));
 
 create table Screen (
