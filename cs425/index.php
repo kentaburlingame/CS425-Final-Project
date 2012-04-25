@@ -19,8 +19,8 @@ require 'header.php'
         <h2>Earn user points to gain rewards! </h2>
         </div>
         <div class="container">
-		<h3><a href="">Discussion Forum</a></h3>
-		<h3><a href="">Purcase Movie Tickets</a></h3>
+		<h3><a href="forum">Discussion Forum</a></h3>
+		<h3><a href="purchases">Purchase Movie Tickets</a></h3>
           <div class="clear"></div>
         </div>
         

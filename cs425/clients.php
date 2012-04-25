@@ -7,7 +7,7 @@ require "functions.php";
 
 session_name('tzLogin');
 session_set_cookie_params(2*7*24*60*60);
-session_start();
+//session_start();
 
 $script = '
 	<script type="text/javascript">
@@ -29,7 +29,6 @@ $script = '
 	header("Location: index.php");
 	exit;
 }
-
 //if($_SESSION['id']){
 //	$manager = mysql_query("SELECT manager FROM agent WHERE usr='".$_SESSION['usr']."'");
 //	$manager = mysql_fetch_row($manager);
